@@ -1,0 +1,1 @@
+void lcd_print(char message[], int line);
