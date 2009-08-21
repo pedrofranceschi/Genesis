@@ -9,31 +9,28 @@
 #include "../libnerdkits/lcd.h"
 #include "../libnerdkits/uart.h"
 
-void lcd_print(char message[], int line)
+void lcd_print(const char *message, int line)
 {
-	switch(line)
+	lcd_init();
+	lcd_home();
+	if (line == 1)
 	{
-		case '1':
 		lcd_line_one();
-		case '2':
-		lcd_line_two();
-		case '3':
+	}
+	if (line == 2)
+	{
+		lcd_line_one();
+	}
+	if (line == 3)
+	{
 		lcd_line_three();
-		case '4':
+	}
+	if (line == 4)
+	{
 		lcd_line_four();
 	}
-	fprintf_P(PSTR("%c"), message);
-}
-
-void set_pin_on(int pin)
-{
-	DDRB |= (1<<pin);
-	PORTB |= (1<<pin);
-}
-
-void set_pin_off(int pin)
-{
-	PORTB &= ~(1<<pin);
+	while(pgm_read_byte(message) != 0x00)
+	    lcd_write_data(pgm_read_byte(message++));
 }
 
 void sleep(int seconds)
