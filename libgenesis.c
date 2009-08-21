@@ -12,14 +12,13 @@
 void lcd_print(const char *message, int line)
 {
 	lcd_init();
-	lcd_home();
 	if (line == 1)
 	{
 		lcd_line_one();
 	}
 	if (line == 2)
 	{
-		lcd_line_one();
+		lcd_line_two();
 	}
 	if (line == 3)
 	{
@@ -47,4 +46,28 @@ void set_pin_on(uint8_t pin)
 void set_pin_off(uint8_t pin)
 {
 	PORTC &= ~(1<<pin);
+}
+
+void set_led_intensity(uint8_t pin, int percentage)
+{
+	int setted_percentage = (percentage * 2.5);
+	if (percentage > 100)
+	{
+		setted_percentage = 100;
+	}	
+	OCR1AL = setted_percentage;
+}
+
+void led_pwm_start(uint8_t pin)
+{
+	OCR1AH = 0;
+	DDRB |= (1<<pin);
+	TCCR1A = (1<<COM1A1)|(1<<1);
+	TCCR1B = 1;
+}
+
+void led_pwm_stop()
+{
+	TCCR1B = 0;
+	TCCR1A = 0;
 }
