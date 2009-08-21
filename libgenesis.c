@@ -22,5 +22,21 @@ void lcd_print(char message[], int line)
 		case '4':
 		lcd_line_four();
 	}
-	lcd_write_string(PSTR("%c"), message);
+	fprintf_P(PSTR("%c"), message);
+}
+
+void set_pin_on(int pin)
+{
+	DDRB |= (1<<pin);
+	PORTB |= (1<<pin);
+}
+
+void set_pin_off(int pin)
+{
+	PORTB &= ~(1<<pin);
+}
+
+void sleep(int seconds)
+{
+	delay_ms((seconds * 1000));
 }
