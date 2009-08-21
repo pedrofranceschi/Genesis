@@ -37,3 +37,14 @@ void sleep(int seconds)
 {
 	delay_ms((seconds * 1000));
 }
+
+void set_pin_on(uint8_t pin)
+{
+	DDRC  |=  (1<<pin);
+	PORTC |=  (1<<pin);
+}
+
+void set_pin_off(uint8_t pin)
+{
+	PORTC &= ~(1<<pin);
+}
