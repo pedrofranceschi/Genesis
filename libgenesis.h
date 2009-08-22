@@ -20,5 +20,6 @@ int adc_read();
 void serial_start();
 void serial_write(char buf);
 char serial_read();
+void buzzer_play(uint8_t pin, int delay_i, int duration);
 
 #endif

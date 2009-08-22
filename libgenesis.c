@@ -168,3 +168,26 @@ char serial_read()
 {
 	return uart_read();
 }
+
+void buzzer_play(uint8_t pin, int delay_i, int duration)
+{	
+	// WARNING: delay should be the value of the note
+	// in Hz (you can find notes in Hz in http://is.gd/2tvDr)
+	
+	// duration should be passed in millisec.
+	int delay = (500000/delay_i);
+	OSCCAL = 176;
+	DDRB |= (1<<pin);
+	
+	uint16_t tmp = 100 * duration;
+	uint16_t delaysm = delay / 50;
+	uint16_t cycles = tmp / delaysm;
+    
+	while(cycles > 0) {
+	  PORTB |= (1<<pin);
+	  delay_us(delay);
+	  PORTB &= ~(1<<pin);
+	  delay_us(delay);
+	  cycles--;
+	}
+}
