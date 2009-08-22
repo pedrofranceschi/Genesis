@@ -55,8 +55,11 @@ void set_pin_off(uint8_t pin)
 	PORTC &= ~(1<<pin);
 }
 
-void set_led_intensity(uint8_t pin, int percentage)
+void set_led_intensity(int percentage)
 {
+	// WARNING: intensity will be setted on
+	// pin OC1A (PC1)
+	
 	int setted_percentage = (percentage * 2.5);
 	if (percentage > 100)
 	{
@@ -65,15 +68,43 @@ void set_led_intensity(uint8_t pin, int percentage)
 	OCR1AL = setted_percentage;
 }
 
-void led_pwm_start(uint8_t pin)
+void led_pwm_start()
 {
+	// WARNING: this function just works on 
+	// pin OC1A (PC1)
+	
 	OCR1AH = 0;
-	DDRB |= (1<<pin);
+	DDRB |= (1<<PC1);
 	TCCR1A = (1<<COM1A1)|(1<<1);
 	TCCR1B = 1;
 }
 
 void led_pwm_stop()
+{
+	TCCR1B = 0;
+	TCCR1A = 0;
+}
+
+void servo_pwm_set(int position) 
+{	
+	if (position == 4450) position = 4450; // max. position
+	if (position == 1300) position == 1300; // min. position
+	OCR1B = position;
+}
+
+void servo_pwm_start()
+{
+	// WARNING: this function just works on 
+	// pin OC1B (PC2)
+	
+	DDRB |= (1<<PB2);
+	OCR1A = 36864;
+	servo_pwm_set(1300);
+    TCCR1A = (1<<COM1B1) | (1<<WGM11) | (1<<WGM10);
+    TCCR1B = (1<<WGM13) | (1<<WGM12) | (1<<CS11);
+}
+
+void servo_pwm_stop()
 {
 	TCCR1B = 0;
 	TCCR1A = 0;

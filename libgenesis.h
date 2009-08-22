@@ -7,8 +7,11 @@ void clear_lcd();
 void sleep(int seconds);
 void set_pin_on(uint8_t pin);
 void set_pin_off(uint8_t pin);
-void set_led_intensity(uint8_t pin, int percentage);
-void led_pwm_start(uint8_t pin);
+void set_led_intensity(int percentage);
+void led_pwm_start();
 void led_pwm_stop();
+void servo_pwm_start();
+void servo_pwm_set(int position);
+void servo_pwm_stop();
 
 #endif
