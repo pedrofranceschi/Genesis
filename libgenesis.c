@@ -4,7 +4,6 @@
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <inttypes.h>
-#include <avr/pgmspace.h>
 #include "../libnerdkits/delay.h"
 #include "../libnerdkits/lcd.h"
 #include "../libnerdkits/uart.h"
@@ -30,6 +29,14 @@ void lcd_print(const char *message, int line)
 	}
 	while(pgm_read_byte(message) != 0x00)
 	    lcd_write_data(pgm_read_byte(message++));
+}
+
+void clear_lcd()
+{
+	lcd_print(PSTR("                    "), 1);
+	lcd_print(PSTR("                    "), 2);
+	lcd_print(PSTR("                    "), 3);
+	lcd_print(PSTR("                    "), 4);
 }
 
 void sleep(int seconds)
