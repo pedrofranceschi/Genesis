@@ -117,7 +117,7 @@ int pin_status(uint8_t pin)
 	// 2 - Is not pulled to ground (not pressed)
 	
 	PORTC |= (1<<pin);
-	if (PINC & (1<<PC5))
+	if (PINC & (1<<pin))
 	{
 		return 1;
 	}
