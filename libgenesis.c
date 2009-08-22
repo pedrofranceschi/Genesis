@@ -4,9 +4,9 @@
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <inttypes.h>
-#include "../libnerdkits/delay.h"
-#include "../libnerdkits/lcd.h"
-#include "../libnerdkits/uart.h"
+#include "includes/delay.h"
+#include "includes/lcd.h"
+#include "includes/uart.h"
 
 void lcd_start()
 {
