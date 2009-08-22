@@ -15,5 +15,7 @@ void servo_pwm_start();
 void servo_pwm_set(int position);
 void servo_pwm_stop();
 int pin_status(uint8_t pin);
+void adc_start();
+int adc_read();
 
 #endif

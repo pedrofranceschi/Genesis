@@ -15,7 +15,6 @@ void lcd_start()
 
 void lcd_print(const char *message, int line)
 {
-	lcd_init();
 	if (line == 1)
 	{
 		lcd_line_one();
@@ -130,4 +129,25 @@ int pin_status(uint8_t pin)
 	{
 		return 0;
 	}
+}
+
+void adc_start()
+{
+	// WARNING: this function just works on
+	// pin PC0 (ADC0)
+	
+	ADMUX = 0;
+	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+	ADCSRA |= (1<<ADSC);
+}
+
+int adc_read() {
+	while(ADCSRA & (1<<ADSC)) {
+	}
+	uint16_t result = ADCL;
+	uint16_t temp = ADCH;
+	result = result + (temp<<8);
+	
+	ADCSRA |= (1<<ADSC);
+	return result;
 }
