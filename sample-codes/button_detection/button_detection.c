@@ -18,7 +18,7 @@ int main()
 	 }
 	 else // if PC5 is not pulled to ground (isn't pressed)...
 	{
-		lcd_print(PSTR("status: NOT PRESSED"), 3); // print the message in line 3 telling the user the button is pressed.
+		lcd_print(PSTR("status: NOT PRESSED"), 3); // print the message in line 3 telling the user the button is not pressed.
 		set_pin_off(PC4); // set the LED on PC4 off.
 	}
 }
