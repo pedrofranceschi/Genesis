@@ -88,7 +88,7 @@ void led_pwm_stop()
 void servo_pwm_set(int position) 
 {	
 	if (position == 4450) position = 4450; // max. position
-	if (position == 1300) position == 1300; // min. position
+	if (position == 1300) position = 1300; // min. position
 	OCR1B = position;
 }
 
@@ -108,4 +108,21 @@ void servo_pwm_stop()
 {
 	TCCR1B = 0;
 	TCCR1A = 0;
+}
+
+int pin_status(uint8_t pin)
+{
+	// Returned values:
+	// 1 - Is pulled to ground (pressed)
+	// 2 - Is not pulled to ground (not pressed)
+	
+	PORTC |= (1<<pin);
+	if (PINC & (1<<PC5))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }

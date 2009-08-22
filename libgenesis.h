@@ -13,5 +13,6 @@ void led_pwm_stop();
 void servo_pwm_start();
 void servo_pwm_set(int position);
 void servo_pwm_stop();
+int pin_status(uint8_t pin);
 
 #endif
