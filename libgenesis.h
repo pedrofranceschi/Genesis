@@ -2,6 +2,7 @@
 #define __GENESIS_H
 #include "libgenesis.c"
 
+void lcd_start();
 void lcd_print(const char *message, int line);
 void clear_lcd();
 void sleep(int seconds);

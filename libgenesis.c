@@ -8,6 +8,11 @@
 #include "../libnerdkits/lcd.h"
 #include "../libnerdkits/uart.h"
 
+void lcd_start()
+{
+	lcd_init();
+}
+
 void lcd_print(const char *message, int line)
 {
 	lcd_init();
