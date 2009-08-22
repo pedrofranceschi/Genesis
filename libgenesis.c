@@ -151,3 +151,20 @@ int adc_read() {
 	ADCSRA |= (1<<ADSC);
 	return result;
 }
+
+void serial_start()
+{
+	uart_init();
+	FILE uart_stream = FDEV_SETUP_STREAM(uart_putchar, uart_getchar, _FDEV_SETUP_RW);
+	stdin = stdout = &uart_stream;
+}
+
+void serial_write(char buf)
+{
+	uart_write(buf);
+}
+
+char serial_read()
+{
+	return uart_read();
+}
