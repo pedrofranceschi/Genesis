@@ -99,7 +99,7 @@ void servo_pwm_set(int position)
 void servo_pwm_start()
 {
 	// WARNING: this function just works on 
-	// pin OC1B (PC2)
+	// pin OC1B (PB2)
 	
 	DDRB |= (1<<PB2);
 	OCR1A = 36864;
