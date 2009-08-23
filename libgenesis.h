@@ -1,3 +1,14 @@
+/* 
+ * libgenesis.h
+ * Genesis - A Library for simple MCU programming in C.
+ *
+ * by pH (Pedro Henrique Cavallieri Franceschi)
+ * iBlogeek.com - 2006-2009 (C)
+ * 
+ * All rights reserved
+ *
+*/
+
 #ifndef __GENESIS_H
 #define __GENESIS_H
 #include "libgenesis.c"
