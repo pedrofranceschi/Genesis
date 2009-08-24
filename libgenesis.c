@@ -75,12 +75,12 @@ void set_led_intensity(int percentage)
 	// WARNING: intensity will be setted on
 	// pin OC1A (PC1)
 	
-	int setted_percentage = (percentage * 2.5);
+	int final_percentage = (percentage * 2.5);
 	if (percentage > 100)
 	{
-		setted_percentage = 100;
+		final_percentage = 100;
 	}	
-	OCR1AL = setted_percentage;
+	OCR1AL = final_percentage;
 }
 
 void led_pwm_start()
